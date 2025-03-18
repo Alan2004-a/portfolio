@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Developer Portfolio</title>
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --dark: #2d3436;
+            --light: #f5f6fa;
+            --accent: #fd79a8;
+            --header-bg: #1e272e; /* New darker background color for header */
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--header-bg); /* Changed from gradient to solid color */
+            color: white;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10%;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 5rem 10%;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .cta-btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        section {
+            padding: 5rem 10%;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+        
+        .about-content {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-img {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .about-img img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .skill-tag {
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-img {
+            width: 100%;
+            height: 200px;
+            background-color: var(--secondary);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s ease;
+        }
+        
+        .project-card:hover .project-img img {
+            transform: scale(1.1);
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-title {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .project-tag {
+            background-color: var(--light);
+            color: var(--dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .project-links a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: 0.3s ease;
+        }
+        
+        .project-links a:hover {
+            color: var(--accent);
+        }
+        
+        .experience-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            width: 3px;
+            background-color: var(--secondary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            padding: 1rem 0;
+            position: relative;
+            width: 50%;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 2rem;
+            text-align: right;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            top: 1.5rem;
+        }
+        
+        .timeline-item:nth-child(odd)::before {
+            right: -10px;
+        }
+        
+        .timeline-item:nth-child(even)::before {
+            left: -10px;
+        }
+        
+        .timeline-date {
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        textarea.form-control {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            background-color: var(--secondary);
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
+        }
+        
+        .footer-text {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Game-themed elements */
+        .pixel-art {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            opacity: 0.1;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><rect width="10" height="10" fill="white"/><rect x="10" y="10" width="10" height="10" fill="white"/></svg>');
+        }
+        
+        /* Animation */
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0); }
+        }
+        
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .nav-links li {
+                margin: 0.5rem 0;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding: 0 0 0 2rem !important;
+                text-align: left !important;
+            }
+            
+            .timeline-item::before {
+                left: -10px !important;
+            }
+            
+            .experience-timeline::before {
+                left: 0;
+            }
+        }
+
+        /* Game animation for header */
+        .game-character {
+            position: absolute;
+            bottom: -30px;
+            right: 50px;
+            width: 80px;
+            height: 80px;
+            background-color: var(--accent);
+            border-radius: 10px;
+            z-index: 1;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="pixel-art"></div>
+        <div class="game-character"></div>
+        <nav>
+            <div class="logo">GameDev</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="hero">
+            <h1>Game Developer & Designer</h1>
+            <p>Creating immersive gaming experiences through code, design, and creativity.</p>
+            <a href="#projects" class="cta-btn">View My Work</a>
+        </div>
+    </header>
+
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="about-img">
+                <img src="IMAGES/ALANBOSE.jpg" alt="Profile" />
+            </div>
+            <div class="about-text">
+                <h3>Hi, I'm ALAN BOSE</h3>
+                <p>I'm a Computer Science and Design student with a passion for game development. I blend technical knowledge with creative design to create engaging and immersive gaming experiences.</p>
+                <p>My journey in game development began when I first played [game name] and was inspired by how it combined storytelling, art, and programming into one compelling experience. Since then, I've been dedicated to mastering the skills needed to create games that leave lasting impressions.</p>
+                <div class="skills">
+                    <span class="skill-tag">HTML/CSS/JavaScript</span>
+                    <span class="skill-tag">Unity</span>
+                    <span class="skill-tag">Unreal Engine</span>
+                    <span class="skill-tag">C#</span>
+                    <span class="skill-tag">C++</span>
+                    <span class="skill-tag">Game Design</span>
+                    <span class="skill-tag">3D Modeling</span>
+                    <span class="skill-tag">Character Design</span>
+                    <span class="skill-tag">Level Design</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">My Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="/api/placeholder/400/200" alt="Project 1" />
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Cosmic Explorer</h3>
+                    <p>A space exploration game where players navigate through galaxies, solve puzzles, and discover the secrets of the universe.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Unity</span>
+                        <span class="project-tag">C#</span>
+                        <span class="project-tag">3D</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#">Play Demo</a>
+                        <a href="#">View Source</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="/api/placeholder/400/200" alt="Project 2" />
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Pixel Quest</h3>
+                    <p>A retro-style 2D platformer with pixel art graphics, challenging levels, and a nostalgic soundtrack.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">JavaScript</span>
+                        <span class="project-tag">HTML5 Canvas</span>
+                        <span class="project-tag">2D</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#">Play Game</a>
+                        <a href="#">View Source</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="/api/placeholder/400/200" alt="Project 3" />
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Strategy Masters</h3>
+                    <p>A turn-based strategy game where players build civilizations, manage resources, and engage in tactical battles.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Unreal Engine</span>
+                        <span class="project-tag">C++</span>
+                        <span class="project-tag">Multiplayer</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#">Download</a>
+                        <a href="#">Watch Trailer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2 class="section-title">Experience & Education</h2>
+        <div class="experience-timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">2023 - Present</div>
+                <h3>Game Development Intern</h3>
+                <p>XYZ Game Studios</p>
+                <p>Working on UI development and game mechanics for upcoming mobile titles.</p>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">2022 - 2023</div>
+                <h3>Freelance Game Developer</h3>
+                <p>Self-employed</p>
+                <p>Created custom game prototypes for clients and small indie studios.</p>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">2021 - Present</div>
+                <h3>BS in Computer Science</h3>
+                <p>University Name</p>
+                <p>Specializing in Game Development and Interactive Media.</p>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">2020 - 2021</div>
+                <h3>Game Design Certificate</h3>
+                <p>Online Academy</p>
+                <p>Completed intensive course in game design principles and prototyping.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-form">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" class="form-control" placeholder="Your Name">
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" class="form-control" placeholder="Your Email">
+            </div>
+            
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" class="form-control" placeholder="Subject">
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" class="form-control" placeholder="Your Message"></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">Send Message</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-links">
+            <a href="#">GitHub</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">Twitter</a>
+            <a href="#">Itch.io</a>
+        </div>
+        <p class="footer-text">&copy; 2025 [Your Name]. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Simple form validation
+        const form = document.querySelector('.contact-form');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+                
+                if (!name || !email || !message) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+                
+                alert('Thank you for your message. I will get back to you soon!');
+                form.reset();
+            });
+        }
+        
+        // Project hover effect for mobile
+        const projectCards = document.querySelectorAll('.project-card');
+        projectCards.forEach(card => {
+            card.addEventListener('touchstart', function() {
+                this.classList.add('hover');
+            });
+            
+            card.addEventListener('touchend', function() {
+                setTimeout(() => {
+                    this.classList.remove('hover');
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>
